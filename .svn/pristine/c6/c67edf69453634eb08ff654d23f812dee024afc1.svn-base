@@ -1,0 +1,7 @@
+package exception;
+
+public class mutuallyExclusiveTruths extends Exception {
+  public mutuallyExclusiveTruths(String message){
+    super(message);
+  }
+}

@@ -1,0 +1,44 @@
+package commands;
+
+
+
+import exceptions.*;
+import fileSystem.*;
+
+public class LsRecursive {
+  FileSystem fs = FileSystem.getFileSystemFp();
+
+  Ls list = new Ls();
+
+  public void execute(String[] pathlist) throws InvalidDirectoryPath {
+    for (int i = 0; i < pathlist.length; i++) {
+
+      String path = pathlist[i];
+      InvalidDirectoryPath invalidToPathException = 
+          new InvalidDirectoryPath(path);
+      
+      // Change string into preferred format
+      if (path.length() != 1 && path.endsWith("/"))
+        path = path.substring(0, path.length() - 1);
+      
+      if(!fs.isValidPath(path)){
+        throw invalidToPathException;
+      } else{
+        listRecursive(fs.goToDirectoryInPath(path));
+      }
+    }
+  }
+  
+  public void listRecursive(Directory dir){
+    if (dir.getDirContents().isEmpty()){
+      for (int i = 0; i < dir.getFileName().size(); i++)
+        System.out.println(i);
+    }else{
+      System.out.println(dir.getName());
+      for (int i=0; i < dir.getDirContents().size(); i++)
+        listRecursive(dir.getDirContents().get(i));
+      for (int i =0; i < dir.getFileName().size(); i++)
+        System.out.println(dir.getFileName().get(i));
+    }
+  }
+}

@@ -1,0 +1,7 @@
+package exception;
+
+public class invalidDirectoryPath extends Exception{
+  public invalidDirectoryPath(String path){
+    super(path);
+  }
+}

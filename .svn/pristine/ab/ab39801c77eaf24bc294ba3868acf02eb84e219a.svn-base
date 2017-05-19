@@ -1,0 +1,9 @@
+package exception;
+
+public class usageError extends Exception{
+  public usageError(){
+  }
+  public usageError(String message){
+    super(message);
+  }
+}

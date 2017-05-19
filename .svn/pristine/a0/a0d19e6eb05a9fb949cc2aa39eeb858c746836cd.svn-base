@@ -1,0 +1,33 @@
+package fileSystem;
+
+import java.util.ArrayList;
+import java.util.EmptyStackException;
+
+/**
+ * A Stack class to use for pushd and popd commands. Implements the stack using
+ * an ArrayList and contains the standard stack methods such as push, pop, 
+ * and is_empty. 
+ */
+public class MyStack {
+
+  // Create a global ArrayList
+  ArrayList<Directory> StkList = new ArrayList<Directory>();
+  
+  // Constructor instantiates nothing new 
+  public MyStack() {  
+  }
+  
+  public void push(Directory directory){
+    StkList.add(directory);
+    //fs.setCurrentWorkingDirectory(directory);
+  }
+  
+  public Directory pop(){   
+    if (StkList.isEmpty())
+    {
+      throw new EmptyStackException();
+    }
+    return StkList.remove(StkList.size()-1);  
+
+  }
+}
